@@ -80,8 +80,12 @@ function TshirtModel({ color, baseColor, overlayText, overlayImage, overlayImage
 
   // Canvas-текстураны жаңарту
   useEffect(() => {
-    const tex = createTshirtTexture({ baseColor, overlayText, overlayImage, overlayImagePosition, overlayImageSize, overlayImageRotation, overlayTextPosition, overlayTextSize, overlayTextRotation });
-    setTexture(tex);
+    if (overlayText || overlayImage) {
+      const tex = createTshirtTexture({ baseColor, overlayText, overlayImage, overlayImagePosition, overlayImageSize, overlayImageRotation, overlayTextPosition, overlayTextSize, overlayTextRotation });
+      setTexture(tex);
+    } else {
+      setTexture(null);
+    }
   }, [baseColor, overlayText, overlayImage, overlayImagePosition, overlayImageSize, overlayImageRotation, overlayTextPosition, overlayTextSize, overlayTextRotation]);
 
   // Материалдарды өзгерту
